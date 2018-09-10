@@ -11,7 +11,7 @@ Instead of manual and you set the password input to automatic, the program will 
 ClosedSesame is under the MIT license.
 
 ## Authors
-Nick Damberg, J Christie, Michael Sklepovich, Steph Harper
+Nick Damberg, J Christie, Michael Sklepowich, Steph Harper
 
 ## Change log
 Aug 29, 2018 - Created Repo
