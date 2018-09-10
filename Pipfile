@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 api = {editable = true, path = ".", extras = ["testing"]}
+pyramid-restful-framework = "*"
 
 [dev-packages]
 
