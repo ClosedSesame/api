@@ -1,10 +1,11 @@
 from marshmallow_sqlalchemy import ModelSchema
 from marshmallow_sqlalchemy.fields import fields
-from . import UserAccounts, Users
+from .users import Users
+from .user_accounts import UserAccounts
 
 
 class UserAccountsScheme(ModelSchema):
-    
+
     class Meta:
         model = UserAccounts
 
