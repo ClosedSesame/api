@@ -13,11 +13,11 @@ from sqlalchemy import (
 )
 
 
-class Accounts(Base):
-    """Model class for creating User Roles in the application.
+class UserAccounts(Base):
+    """Model class for User Accounts in the application.
        Roles are pre-configured by our initialization script, but can be modified at the database shell level by an admin.
     """
-    __tablename__ = 'account_roles'
+    __tablename__ = 'user_accounts'
     id = Column(Integer, primary_key=True)
     website = Column(String, nullable=False, unique=True)
     user = Column(String, nullable=False, unique=True)

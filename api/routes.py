@@ -1,6 +1,6 @@
 
 from pyramid_restful.routers import ViewSetRouter
-# from .views.weather_location import WeatherLocationAPIView, LookupAPIView
+#   from .views.weather_location import WeatherLocationAPIView, LookupAPIView
 # from .views.auth import AuthAPIView
 
 

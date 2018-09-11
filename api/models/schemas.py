@@ -1,24 +1,16 @@
 from marshmallow_sqlalchemy import ModelSchema
 from marshmallow_sqlalchemy.fields import fields
-from . import Users, Accounts
+from . import UserAccounts, Users
 
 
-class AccountRoleScheme(ModelSchema):
+class UserAccountsScheme(ModelSchema):
+    
     class Meta:
-        model = AccountRole
-
-
-class AccountSchema(ModelSchema):
-    roles = fields.Nested(AccountRoleScheme, many=True, only='name')
-
-    class Meta:
-        model = Account
+        model = UserAccounts
 
 
 class UsersSchema(ModelSchema):
-    roles = fields.Nested(AccountRoleScheme, many=True, only='name')
-    account = fields.Nested(AccountSchema, exclude=(
-        'password', 'locations', 'roles', 'date_created', 'date_updated'))
+    accounts = fields.Nested(UserAccountsScheme, many=True, exclude=('id', 'date_created', 'date_updated', 'user_id'))
 
     class Meta:
-        model = WeatherLocation
+        model = Users
