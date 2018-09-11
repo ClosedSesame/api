@@ -3,7 +3,7 @@ from pyramid.view import view_config
 
 @view_config(route_name='home', renderer='json', request_method='GET')
 def home_view(request):
-<<<<<<< HEAD
+
     message = '''
         GET / - Base API route\n
         POST /api/v1/signup/ - Register a new account\n
@@ -13,10 +13,10 @@ def home_view(request):
         PUT /api/v1/update/ - Create new weather record\n
         DELETE /api/v1/delete - Remove existing weather record\n
     '''
-=======
+
     """
     This is the default homepage!
     """
     message = 'Hello Password World!!!!\n'
->>>>>>> 036f53d50a3c52d617342ec26772a1ef9017ba5e
+
     return Response(body=message, content_type='text/plain', status=200)

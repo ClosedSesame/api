@@ -15,19 +15,12 @@ requires = [
     'psycopg2-binary',  # Manual
     'pyramid >= 1.9a',
     'pyramid_debugtoolbar',
-<<<<<<< HEAD
     'pyramid_jinja2',
     'pyramid_jwt',  # Manual
     'pyramid-restful-framework',  # Manual
     'pyramid_retry',
     'pyramid_tm',
     'requests',  # Manual
-=======
-    'pyramid-restful-framework',  # Custom
-    'pyramid_retry',
-    'pyramid_tm',
-    'requests',  # Custom
->>>>>>> 036f53d50a3c52d617342ec26772a1ef9017ba5e
     'SQLAlchemy',
     'transaction',
     'zope.sqlalchemy',
