@@ -12,6 +12,7 @@ def get_view(request):
     
     return Response(body=message, content_type='text/plain', status=200)
 
+
 @view_config(route_name='account', renderer='json', request_method='POST')
 def post_view(request):
     """
@@ -21,6 +22,7 @@ def post_view(request):
     
     return Response(body=message, content_type='text/plain', status=201)
 
+
 @view_config(route_name='account', renderer='json', request_method='PUT')
 def put_view(request):
     """
@@ -29,6 +31,7 @@ def put_view(request):
     message = 'Update account route hit!!!!\n'
     
     return Response(body=message, content_type='text/plain', status=202)
+
 
 @view_config(route_name='account', renderer='json', request_method='DELETE')
 def delete_view(request):
