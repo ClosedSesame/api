@@ -8,7 +8,7 @@ import zope.sqlalchemy
 
 from .associations import accounts_association  # flake8: noga
 from .user_accounts import UserAccounts  # flake8: noga
-from .users import Users  #flake8: noga
+from .users import Users  # flake8: noga
 
 # run configure_mappers after defining all of the models to ensure
 # all relationships can be setup

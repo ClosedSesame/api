@@ -9,7 +9,6 @@ def get_view(request):
     This is the authorization route
     """
     message = 'Get accounts route hit!!!!\n'
-    
     return Response(body=message, content_type='text/plain', status=200)
 
 
@@ -19,7 +18,7 @@ def post_view(request):
     This is the authorization route
     """
     message = 'New account route hit!!!!\n'
-    
+
     return Response(body=message, content_type='text/plain', status=201)
 
 
@@ -29,7 +28,7 @@ def put_view(request):
     This is the authorization route
     """
     message = 'Update account route hit!!!!\n'
-    
+
     return Response(body=message, content_type='text/plain', status=202)
 
 
@@ -39,7 +38,7 @@ def delete_view(request):
     This is the authorization route
     """
     message = 'Remove account route hit!!!!\n'
-    
+
     return Response(body=message, content_type='text/plain', status=203)
 
 
@@ -48,20 +47,20 @@ def delete_view(request):
 #         """
 #         """
 #         pass
-        # data = json.loads(request.body)
+    # data = json.loads(request.body)
 
-        # if auth == 'register':
-        #     try = Account.new(
-        #         request,
-        #         data['email'],
-        #         data['password'])
-        #     except (integrityError, KeyError):
-        #         return Response(json='Bad Request', status=400)
+    # if auth == 'register':
+    #     try = Account.new(
+    #         request,
+    #         data['email'],
+    #         data['password'])
+    #     except (integrityError, KeyError):
+    #         return Response(json='Bad Request', status=400)
 
-        #     # TODO: Refactor to use JSON Web Token
-        #     return Response(json='Created', status=201)
+    #     # TODO: Refactor to use JSON Web Token
+    #     return Response(json='Created', status=201)
 
-        # if auth == 'login':
-        #     pass
+    # if auth == 'login':
+    #     pass
 
-        # return Response(json='Not Found', status=404)
+    # return Response(json='Not Found', status=404)
