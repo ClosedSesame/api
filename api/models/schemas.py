@@ -11,7 +11,7 @@ class UserAccountsSchema(ModelSchema):
 
 
 class UsersSchema(ModelSchema):
-    accounts = fields.Nested(UserAccountsScheme, many=True, exclude=('id', 'date_created', 'date_updated', 'user_id'))
+    accounts = fields.Nested(UserAccountsSchema, many=True, exclude=('id', 'date_created', 'date_updated', 'user_id'))
 
     class Meta:
         model = Users
