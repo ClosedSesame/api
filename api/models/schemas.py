@@ -4,7 +4,7 @@ from .users import Users
 from .user_accounts import UserAccounts
 
 
-class UserAccountsScheme(ModelSchema):
+class UserAccountsSchema(ModelSchema):
 
     class Meta:
         model = UserAccounts

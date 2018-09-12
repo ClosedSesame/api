@@ -1,67 +1,49 @@
-from sqlalchemy.exc import IntegrityError, DataError
 from pyramid_restful.viewsets import APIViewSet
+from sqlalchemy.exc import IntegrityError
 from pyramid.response import Response
-import requests
-import json
-import os
 from ..models.users import Users
-from ..models.user_accounts import UserAccounts
+import json
 
 
-class UserAPIView(APIViewSet):
-    def create(self, request):
+class AuthAPIView(APIViewSet):
+    def create(self, request, auth=None):
         """
         """
-        try:
-            kwargs = json.loads(request.body)
-        except json.JSONDecodeError as e:
-            return Response(json=e.msg, status=400)
+        data = json.loads(request.body.decode())
 
-        if 'email' not in kwargs:
-            return Response(json='Expected value; email')
-        if 'password' not in kwargs:
-            return Response(json='Expected value; password')
+        if auth == 'register':
+            try:
+                account = Users.new(
+                    request,
+                    email=data['email'],
+                    password=data['password'])
+            except (IntegrityError, KeyError):
+                return Response(json='Bad Request', status=400)
 
-        try:
-            user = Users.new(request=request, **kwargs)
-        except IntegrityError:
-            return Response(json='Bad Request', status=400)
+            # NOTE: Refactored this for authentication / JSON Web Token
+            return Response(
+                json_body={
+                    'token': request.create_jwt_token(
+                        account.email,
+                        userName=account.email,
+                    ),
+                },
+                status=201
+            )
 
-        schema = WeatherLocationSchema()
-        data = schema.dump(user).data
+        if auth == 'login':
+            authenticated = Users.check_credentials(request, data['email'], data['password'])
 
-        return Response(json=data, status=201)
+            if authenticated:
+                return Response(
+                    json_body={
+                        'token': request.create_jwt_token(
+                            authenticated.email,
+                            userName=authenticated.email,
+                        ),
+                    },
+                    status=201
+                )
+            return Response(json='Not Authorized', status=401)
 
-    def list(self, request):
-        """
-        """
-        records = WeatherLocation.all(request)
-        schema = WeatherLocationSchema()
-        data = [schema.dump(record).data for record in records]
-
-        return Response(json=data, status=200)
-
-    def retrieve(self, request, id=None):
-        """
-        """
-        record = WeatherLocation.one(request=request, pk=id)
-        if not record:
-            return Response(json='No Found', status=400)
-
-        schema = WeatherLocationSchema()
-        data = schema.dump(record).data
-
-        return Response(json=data, status=200)
-
-    def destroy(self, request, id=None):
-        """
-        """
-        if not id:
-            return Response(json='Bad Request', status=400)
-
-        try:
-            WeatherLocation.remove(request=request, pk=id)
-        except (DataError, AttributeError):
-            return Response(json='Not Found', status=404)
-
-        return Response(status=204)
+        return Response(json='Not Found', status=404)
