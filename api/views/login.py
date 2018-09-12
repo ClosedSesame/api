@@ -9,5 +9,4 @@ def home_view(request):
     This is the authorization route
     """
     message = 'Login route hit!!!!\n'
-    
     return Response(body=message, content_type='text/plain', status=201)
