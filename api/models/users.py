@@ -60,7 +60,7 @@ class Users(Base):
 
     @classmethod
     def check_credentials(cls, request=None, email=None, password=None):
-        
+
         if request.dbsession is None:
             raise DBAPIError
 
