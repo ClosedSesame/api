@@ -9,8 +9,9 @@ class AuthAPIView(APIViewSet):
     def create(self, request, auth=None):
         """
         """
+        print('this is the request', request)
         data = json.loads(request.body.decode())
-
+        print(data)
         if auth == 'register':
             try:
                 account = Users.new(

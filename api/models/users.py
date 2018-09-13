@@ -44,11 +44,15 @@ class Users(Base):
     def new(cls, request, email=None, password=None):
         """
         """
+        print('this is the request in the class method', request)
+        print('new user added', email, password)
         if request.dbsession is None:
             raise DBAPIError
 
         user = cls(email, password)
         request.dbsession.add(user)
+
+        request.dbsession.flush()
 
         return request.dbsession.query(cls).filter(
             cls.email == email).one_or_none()
