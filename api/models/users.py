@@ -1,8 +1,10 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy.exc import DBAPIError
+from .associations import accounts_association
 from datetime import datetime as dt
 from .meta import Base
 from cryptacular import bcrypt
+from .roles import AccountRole
 from sqlalchemy import (
     Column,
     String,
@@ -25,9 +27,11 @@ class Users(Base):
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
+    roles = relationship(AccountRole, secondary=accounts_association, back_populates='users')
     accounts = relationship('UserAccounts', backref='users')  # TODO: Reference the table in .managed/associated/schema
     date_created = Column(DateTime, default=dt.now())
     date_updated = Column(DateTime, default=dt.now(), onupdate=dt.now())
+    
 
     # NOTE: Added account and account_id refs for relationship management
     # account_id = Column(Integer, ForeignKey('user_accounts.id'), nullable=False)
@@ -44,11 +48,17 @@ class Users(Base):
     def new(cls, request, email=None, password=None):
         """
         """
-        if request.dbsession is None:
+        print('this is the request in the class method', request)
+        print('new user added', email, password)
+        # import pdb;pdb.set_trace()
+        # if request.dbsession is None:
+        if request is None:
             raise DBAPIError
 
         user = cls(email, password)
         request.dbsession.add(user)
+
+        request.dbsession.flush()
 
         return request.dbsession.query(cls).filter(
             cls.email == email).one_or_none()

@@ -18,6 +18,6 @@ def home_view(request):
     """
     This is the default homepage!
     """
-    message = 'Hello Password World!!!!\n'
+    # message = 'Hello Password World!!!!\n'
 
     return Response(body=message, content_type='text/plain', status=200)
