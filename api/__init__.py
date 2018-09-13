@@ -4,7 +4,7 @@ from pyramid.security import Allow, ALL_PERMISSIONS
 
 class RootACL(object):
     __acl__ = [
-        (Allow, 'registered', ALL_PERMISSIONS),
+        (Allow, 'admin', ALL_PERMISSIONS),
     ]
 
     def __init__(self, request):
