@@ -1,6 +1,7 @@
 from pyramid_restful.viewsets import APIViewSet
 from sqlalchemy.exc import IntegrityError
 from pyramid.response import Response
+from ..models.account import Account
 
 import json
 
@@ -34,7 +35,7 @@ class AuthAPIView(APIViewSet):
 
             if authenticated:
                 return Response(
-                    json_body{
+                    json_body={
                         'token': request.create_jwt_token(
                             authenticated.email,
                             userName=authenticated.email,

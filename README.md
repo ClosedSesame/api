@@ -50,7 +50,7 @@ CREATE DATABASE closedsesame;
 \l
 \c closedsesame
 \dt
-select * from users;
+select * from accounts;
 select * from user_accounts;
 ```
 
