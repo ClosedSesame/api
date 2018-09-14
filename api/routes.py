@@ -12,3 +12,4 @@ def includeme(config):
     # This is where user gets authorization.
     router.register('api/v1/auth/{auth}', AuthAPIView, 'auth')
     router.register('api/v1/passwords', PasswordsAPIView, 'passwords')
+

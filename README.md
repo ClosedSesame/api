@@ -82,6 +82,23 @@ CREATE DATABASE closedsesame;
 initialize_api_db development.ini
 ```
 
+### Sep 12, 2018
+- setup database
+```
+sudo -u postgres psql
+\du
+ALTER USER postgres WITH PASSWORD 'Password!1';
+CREATE DATABASE closedsesame;
+\l
+\c closedsesame
+\dt
+```
+
+-initalize DB
+```
+initialize_api_db development.ini
+```
+
 ### Sep 05, 2018
 - Updated apps features checklist
 

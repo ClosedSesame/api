@@ -6,6 +6,7 @@ from pyramid.security import Allow, ALL_PERMISSIONS
 class RootACL(object):
     __acl__ = [
         (Allow, 'member', ALL_PERMISSIONS),
+
     ]
 
     def __init__(self, request):
@@ -31,6 +32,7 @@ def main(global_config, **settings):
         auth_type='Bearer',
         callback=add_role_principals,
     )
+
     config.include('.routes')
     config.scan()
     return config.make_wsgi_app()
