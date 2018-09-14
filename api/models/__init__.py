@@ -5,11 +5,7 @@ import zope.sqlalchemy
 
 # import or define all models here to ensure they are attached to the
 # Base.metadata prior to any initialization routines
-
-from .users import Users  # flake8: noga
-# from .associations import accounts_association  # flake8: noga
-from .user_accounts import UserAccounts  # flake8: noga
-
+from .account import Account  # flake8: noqa
 
 # run configure_mappers after defining all of the models to ensure
 # all relationships can be setup

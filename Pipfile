@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-api = {editable = true, path = ".", extras = ["testing"]}
+api = {path = ".", extras = ["testing"], editable = true}
 pyramid-restful-framework = "*"
 cryptacular = {editable = true, ref = "cb96fb3", hg = "https://bitbucket.org/dholth/cryptacular"}
 

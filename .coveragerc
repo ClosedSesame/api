@@ -1,3 +1,4 @@
 [run]
 source = api
 omit = api/test*
+        **/**/initializedb.py
