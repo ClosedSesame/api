@@ -7,6 +7,7 @@ from ..models.account import Account
 
 import json
 
+
 class PasswordsAPIView(APIViewSet):
     def create(self, request):
         """
@@ -17,11 +18,11 @@ class PasswordsAPIView(APIViewSet):
             return Response(json=e.msg, status=400)
 
         if 'website' not in kwargs:
-            return Response(json='Expected value: website')
+            return Response(json='Expected value: website', status=400)
         if 'login' not in kwargs:
-            return Response(json='Expected value: login name')
+            return Response(json='Expected value: login name', status=400)
         if 'password' not in kwargs:
-            return Response(json='Expected value: password')
+            return Response(json='Expected value: password', status=400)
 
         if request.authenticated_userid:
             account = Account.one(request, request.authenticated_userid)
@@ -42,7 +43,7 @@ class PasswordsAPIView(APIViewSet):
         """
         account = Account.one(request, request.authenticated_userid)
         # import pdb; pdb.set_trace()
-        
+
         try:
             records = Passwords.all(request, account.id)
         except AttributeError:
