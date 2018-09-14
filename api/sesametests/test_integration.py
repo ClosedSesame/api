@@ -21,8 +21,8 @@ def test_invalid_registration(testapp):
         'email': 'milly@vanilli.com',
     }
 
-    response = testapp.get('/api/v1/auth/register', json.dumps(account), status='4**')
-    assert response.status_code == 405
+    response = testapp.post('/api/v1/auth/register', json.dumps(account), status='4**')
+    assert response.status_code == 400
 
 
 def test_login(testapp):
@@ -41,6 +41,15 @@ def test_login(testapp):
 def test_no_passwords_when_empty(testapp):
     """
     """
-
     response = testapp.get('/api/v1/passwords', status='4**')
+    assert response.status_code == 400
+
+
+def test_no_passwords_when_passing_invalid_account(testapp):
+    """
+    """
+    account = {
+        'email': 'milly@vanilli.com',
+    }
+    response = testapp.get('/api/v1/passwords', json.dumps(account), status='4**')
     assert response.status_code == 400
