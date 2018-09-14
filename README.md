@@ -79,7 +79,16 @@ CREATE DATABASE closedsesame;
 
 -initalize DB
 ```
+pip3 install -e ".[testing]"
 initialize_api_db development.ini
+#or
+initialize_api_db production.ini
+```
+
+- gunicorn
+```
+sudo systemctl restart gunicorn
+sudo systemctl status gunicorn
 ```
 
 ### Sep 12, 2018
