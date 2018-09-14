@@ -40,6 +40,49 @@ Nick Damberg, J Christie, Michael Sklepowich, Steph Harper
 
 ## Change log
 
+### Sep 12, 2018
+- setup database
+```
+sudo -u postgres psql
+\du
+ALTER USER postgres WITH PASSWORD 'Password!1';
+CREATE DATABASE closedsesame;
+\l
+\c closedsesame
+\dt
+select * from users;
+select * from user_accounts;
+```
+
+-initalize DB
+```
+initialize_api_db development.ini
+```
+
+### Create user
+```
+POST localhost:6543/api/v1/auth/register
+{"email": "second_account@somewhere.com", "password": "encrytpedByTheClient"}
+```
+
+### Login
+```
+POST localhost:6543/api/v1/auth/login
+{"email": "second_account@somewhere.com", "password": "encrytpedByTheClient"}
+```
+
+### Create stored account
+```
+POST localhost:6543/api/v1/accounts/
+Bearer auth: JWT Token
+{"website": "myspace.com", "login": "tom@myspace.com", "password": "everyonesFriend"}
+```
+
+### Start server
+```
+pserve development.ini --reload
+```
+
 ### Sep 05, 2018
 - Updated apps features checklist
 
