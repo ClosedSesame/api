@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 api = {path = ".", extras = ["testing"], editable = true}
 pyramid-restful-framework = "*"
+cryptacular = {editable = true, ref = "cb96fb3", hg = "https://bitbucket.org/dholth/cryptacular"}
 
 [dev-packages]
 
