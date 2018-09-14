@@ -1,45 +1,39 @@
 # ClosedSesame Readme
 
-## Description
-ClosedSesame is your password manager. Our name is inspired by Open Sesame. But our philosophy is you have your password and you don't want it to be given to just anybody. And if you don't like having to remember your password, we will do that for you! And correspond it with the correct site. You can either do it manually or we can do it for you automatically. 
-
-## Instructions
-Once you download ClosedSesame and run it with VS Code, you'll be able to save your password. We will have a site that you can connect with the site you want your password to have. You can also have multiple passwords for multiple sites. You can have the settings be to manual input. Or to automatic input. Whatever you prefer. If you do manually, the site you are at will populate the site field. And you can input the username and password for the site. The site will refresh and populate with your username and password for you to test. If it works, then you'll pass on through to the site as if you had regularly logged in. The information will populate only upon load of the site. 
-Instead of manual and you set the password input to automatic, the program will autopopulate the username and password portion you input. 
-
-## Functionality
-### Server (MVP)
-- [ ] App will allow users to sign up and create a user name and password.
-- [ ] App will store a list of sites, user names, and passwords for the user.
-- [ ] App will encode all user names and passwords in base64.
-- [ ] App will transmit all data to and from client using https ssl.
-- [ ] App will not store user names and passwords in database in plain text (encrypted)
-- [ ] Through api calls users will be able to change their stored passwords.
-- [ ] App should be easily deployable to users service or DIY option of choice.
-
-### Client (not required at this time)
-- [ ] Basic HTML sign up / login page.
-- [ ] When logged in user will get a page with a list of sites, user names, and passwords.
-- [ ] User will be able to add new sites, user names, and passwords.
-- [ ] Users passwords will be un readable until user clicks a show password button.
-- [ ] User will be provided with button that allows the user make a new password for the selected site.
-- [ ] User will be given the option to create the password themselves (not recommended) or use a randomly generated password.
-- [ ] User will be able to select password creation parameters.
-- [ ] App will have a list of common sites requirements for passwords and auto select the optimal settings for generating a password.
-
-### Chrome and / or fire-fox extension (future feature)
-- [ ] Extension will provide same functionality as the client.
-- [ ] Extension will detect when a site that has a stored user name and password is accessed.
-- [ ] Extension will allow user to auto fill with sites stored user name and password when provided with a valid user name and password for the app.
-
-## License
-ClosedSesame is under the MIT license.
+## Deployed Link
+https://ec2-18-191-251-70.us-east-2.compute.amazonaws.com
 
 ## Authors
 Nick Damberg, J Christie, Michael Sklepowich, Steph Harper
 
-## Change log
+## Overview
+ClosedSesame is your password manager. Our name is inspired by Open Sesame. But our philosophy is you have your password and you don't want it to be given to just anybody. And if you don't like having to remember your password, we will do that for you! And correspond it with the correct site. We do it for you automatically. You can also have multiple passwords for multiple sites.
 
+## Installation Instructions
+To run ClosedSesame locally, follow these steps:
+1. Download Postman found ![here](https://www.getpostman.com/apps).
+2. After you've downloaded postman, download VS Code.
+3. Once VS Code is downloaded, install pip. This will allow you to download all dependencies.
+4. Once you have pip downloaded, fork this ![repo](https://github.com/closedsesame). And clone the repo through git via your terminal or bash.
+5. Stay in terminal and move into your cloned repo's folder. Create a pipenv file by typing this in, "pipenv shell". This makes sure the python version you're using stays consistent. Ex: I could be running 3.6 while you're running 3.7. The Pipfile says 3.6. This'll make sure everyone using this file will stay at 3.6.
+6. Type this line in to gather all dependencies:
+"pip install -e ".[testing]"
+7. This application requires a server so to get that started, type this
+into your terminal to turn it on: "pserve development.ini --reload". Here is what you should see:
+![Image]()
+8. Once you see the server running like the above, open up a different terminal window. Do not close the server.
+9. Now you're ready!
+
+## Step by Step Walkthrough
+1. Open Postman application
+2. To register a user, have an email and password ready. Click on the GET to the left of the 'request URL' bar, under the tab and change it to POST. Click on Body tab. The default is set to form-data. Change this to 'raw'. Here's an example of what it should look like:
+![Image]()
+3. Once posted, you are now registered in the database. Open a new tab by clicking on the + sign to the right of your current tab.
+
+## License
+ClosedSesame is under the MIT license.
+
+## Change log
 ### Sep 12, 2018
 - setup database
 ```
@@ -50,8 +44,6 @@ CREATE DATABASE closedsesame;
 \l
 \c closedsesame
 \dt
-select * from accounts;
-select * from user_accounts;
 ```
 
 -initalize DB
@@ -59,35 +51,11 @@ select * from user_accounts;
 initialize_api_db development.ini
 ```
 
-### Create user
-```
-POST localhost:6543/api/v1/auth/register
-{"email": "second_account@somewhere.com", "password": "encrytpedByTheClient"}
-```
-
-### Login
-```
-POST localhost:6543/api/v1/auth/login
-{"email": "second_account@somewhere.com", "password": "encrytpedByTheClient"}
-```
-
-### Create stored account
-```
-POST localhost:6543/api/v1/accounts/
-Bearer auth: JWT Token
-{"website": "myspace.com", "login": "tom@myspace.com", "password": "everyonesFriend"}
-```
-
-### Start server
-```
-pserve development.ini --reload
-```
-
 ### Sep 05, 2018
 - Updated apps features checklist
 
-### Aug 29, 2018 
+### Aug 29, 2018
 - Created Repo
 
-### Aug 30, 2018 
+### Aug 30, 2018
 - Initial Readme

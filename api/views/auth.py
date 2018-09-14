@@ -29,7 +29,7 @@ class AuthAPIView(APIViewSet):
                 },
                 status=201
             )
-        
+
         if auth == 'login':
             authenticated = Account.check_credentials(request, data['email'], data['password'])
 
