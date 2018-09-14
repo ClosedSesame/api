@@ -42,6 +42,12 @@ class Account(Base):
             cls.email == email
         ).one_or_none()
 
+    @classmethod # used for getting user ID to pass to new password store
+    def one(cls, request, email=None):
+        return request.dbsession.query(cls).filter(
+            cls.email == email
+        ).one_or_none()
+
     @classmethod
     def check_credentials(cls, request=None, email=None, password=None):
 
