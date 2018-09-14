@@ -13,6 +13,7 @@ from sqlalchemy import (
     ForeignKey,
 )
 
+
 class Passwords(Base):
     """
     """

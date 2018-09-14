@@ -2,6 +2,7 @@ from pyramid.config import Configurator
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.security import Allow, ALL_PERMISSIONS
 
+
 class RootACL(object):
     __acl__ = [
         (Allow, 'member', ALL_PERMISSIONS),
@@ -10,8 +11,10 @@ class RootACL(object):
     def __init__(self, request):
         pass
 
+
 def add_role_principals(userid, request):
     return request.jwt_claims.get('roles', [])
+
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
