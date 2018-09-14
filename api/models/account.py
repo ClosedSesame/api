@@ -41,3 +41,22 @@ class Account(Base):
         return request.dbsession.query(cls).filter(
             cls.email == email
         ).one_or_none()
+
+    @classmethod
+    def check_credentials(cls, request=None, email=None, password=None):
+
+        if request.dbsession is None:
+            raise DBAPIError
+
+        try:
+            query = request.dbsession.query(cls).filter(
+                cls.email == email).one_or_none()
+                
+        except DBAPIError:
+            raise DBAPIError
+
+        if query is not None:
+            if manager.check(query.password, password):
+                return query
+
+        return None
