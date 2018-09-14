@@ -11,13 +11,13 @@ ClosedSesame is your password manager. Our name is inspired by Open Sesame. But 
 
 ## Installation Instructions
 To run ClosedSesame locally, follow these steps:
-1. Download Postman found ![here](https://www.getpostman.com/apps).
+1. Download Postman found [here](https://www.getpostman.com/apps).
 
-2. After you've downloaded postman, download VS Code found ![here](https://code.visualstudio.com/)
+2. After you've downloaded postman, download VS Code found [here](https://code.visualstudio.com/)
 
 3. Once VS Code is downloaded, install pip. This will allow you to download all dependencies.
 
-4. Once you have pip downloaded, fork this ![repo](https://github.com/closedsesame). And clone the repo through git via your terminal or bash.
+4. Once you have pip downloaded, fork this [repo](https://github.com/closedsesame). And clone the repo through git via your terminal or bash.
 
 5. Stay in terminal and move into your cloned repo's folder. Create a pipenv file by typing this in, "pipenv shell". This makes sure the python version you're using stays consistent. Ex: I could be running 3.6 while you're running 3.7. The Pipfile says 3.6. This'll make sure everyone using this file will stay at 3.6.
 
