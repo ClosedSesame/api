@@ -34,5 +34,16 @@ class Passwords(Base):
         request.dbsession.add(new_account)
 
         return request.dbsession.query(cls).filter(
+            cls.account_id == kwargs['account_id']
+        ).filter(
             cls.website == kwargs['website']
         ).one_or_none()
+
+    @classmethod
+    def all(cls, request, account_id):
+        if request.dbsession is None:
+            raise DBAPIError
+
+        return request.dbsession.query(cls).filter(
+            cls.account_id == account_id
+        )

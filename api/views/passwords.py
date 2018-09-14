@@ -35,4 +35,20 @@ class PasswordsAPIView(APIViewSet):
         schema = NewPasswordsSchema()
         data = schema.dump(new_store).data
 
-        return Response(json=data, status=201) 
+        return Response(json=data, status=201)
+
+    def list(self, request):
+        """
+        """
+        account = Account.one(request, request.authenticated_userid)
+        # import pdb; pdb.set_trace()
+        
+        try:
+            records = Passwords.all(request, account.id)
+        except AttributeError:
+            return Response(json='Bad GET request', status=400)
+
+        schema = NewPasswordsSchema()
+        data = [schema.dump(record).data for record in records]
+
+        return Response(json=data, status=200)
