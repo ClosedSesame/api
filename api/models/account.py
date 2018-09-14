@@ -15,6 +15,7 @@ from sqlalchemy import (
 
 manager = bcrypt.BCRYPTPasswordManager()
 
+
 class Account(Base):
     __tablename__ = 'accounts'
     id = Column(Integer, primary_key=True)
@@ -26,7 +27,7 @@ class Account(Base):
 
     def __init__(self, email, password):
         self.email = email
-        self.password = manager.encode(password, 10) # Hashes the password
+        self.password = manager.encode(password, 10)  # Hashes the password
 
     @classmethod
     def new(cls, request, email=None, password=None):
@@ -42,7 +43,7 @@ class Account(Base):
             cls.email == email
         ).one_or_none()
 
-    @classmethod # used for getting user ID to pass to new password store
+    @classmethod  # used for getting user ID to pass to new password store
     def one(cls, request, email=None):
         return request.dbsession.query(cls).filter(
             cls.email == email
@@ -57,7 +58,7 @@ class Account(Base):
         try:
             query = request.dbsession.query(cls).filter(
                 cls.email == email).one_or_none()
-                
+
         except DBAPIError:
             raise DBAPIError
 
